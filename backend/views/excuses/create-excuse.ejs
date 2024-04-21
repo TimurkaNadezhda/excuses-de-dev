@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excuses de Dev</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4">Add New Excuse</h1>
+        <% if (typeof error !== 'undefined') { %>
+            <div class="alert alert-danger" role="alert">
+                <%= error %>
+            </div>
+        <% } else if (typeof success !== 'undefined') { %>
+            <div class="alert alert-success" role="alert">
+                <%= success %>
+            </div>
+        <% } %>
+        
+        <form id="excuseForm" action="/excuses/add" method="POST">
+            <div class="form-group">
+                <label for="http_code">HTTP Code:</label>
+                <input type="number" class="form-control" id="http_code" name="http_code" value="<%= locals.formData ? locals.formData.http_code : '' %>" required>
+            </div>
+            <div class="form-group">
+                <label for="tag">Tag:</label>
+                <input type="text" class="form-control" id="tag" name="tag" value="<%= locals.formData ? locals.formData.tag : '' %>" required>
+            </div>
+            <div class="form-group">
+                <label for="message">Message:</label>
+                <textarea class="form-control" id="message" name="message" rows="4" required><%= locals.formData ? locals.formData.message : '' %></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Add Excuse</button>
+        </form>
+    </div>
+</body>
+</html>
