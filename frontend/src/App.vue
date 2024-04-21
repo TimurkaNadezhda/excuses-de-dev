@@ -1,9 +1,9 @@
-<template>
+<!-- <template>
   <div id="app">
  
     <MainComponent />
   </div>
-</template>
+</template> 
 
 <script>
 
@@ -15,6 +15,19 @@ export default {
     MainComponent 
   }
 }
-</script>
+</script>  -->
 
+<!-- src/App.vue -->
+
+<template>
+  <div id="app">
+    <router-view></router-view>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'App'
+};
+</script>
 
