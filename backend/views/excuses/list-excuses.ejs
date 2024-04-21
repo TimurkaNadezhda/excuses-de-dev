@@ -8,7 +8,10 @@
 </head>
 <body>
     <div class="container">
-        <h1>List of Excuses</h1>
+        <div class="d-flex justify-content-between align-items-center">
+            <h1>List of Excuses</h1>
+            <a href="/excuses/create" class="btn btn-primary">Add New Excuse</a>
+        </div>
         <ul class="list-group">
             <% excuses.forEach(excuse => { %>
                 <li class="list-group-item">

@@ -20,16 +20,28 @@ exports.getAllExcuses = async (req, res) => {
     }
 };
 
-exports.addExcuse = async (req, res) => { 
-    try {  
+// exports.addExcuse = async (req, res) => { 
+//     try {  
+//         const newExcuse = new Excuse(req.body);
+//         await newExcuse.save();
+//         res.json(newExcuse);
+//     } catch (error) {
+//         console.error('Failed to add excuse:', error);
+//         res.status(500).json({ error: 'Failed to add excuse' });
+//     }
+// };
+
+exports.addExcuse = async (req, res) => {
+    try {
         const newExcuse = new Excuse(req.body);
         await newExcuse.save();
-        res.json(newExcuse);
+        res.render('excuses/create-excuse', { success: 'Excuse added successfully' });
     } catch (error) {
         console.error('Failed to add excuse:', error);
         res.status(500).json({ error: 'Failed to add excuse' });
     }
 };
+
 
 exports.getRandomExcuse = async (req, res) => {
     try {
