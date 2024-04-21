@@ -20,6 +20,16 @@ exports.getAllExcuses = async (req, res) => {
     }
 };
 
+exports.getAllExcusesJSON = async (req, res) => {
+    try {
+        const excuses = await Excuse.find();
+        res.json(excuses);
+    } catch (error) {
+        console.error('Failed to fetch excuses:', error);
+        res.status(500).json({ error: 'Failed to fetch excuses' });
+    }
+};
+
 // exports.addExcuse = async (req, res) => { 
 //     try {  
 //         const newExcuse = new Excuse(req.body);

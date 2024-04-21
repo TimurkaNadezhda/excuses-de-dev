@@ -31,6 +31,7 @@ app.get('/excuses/create', (req, res) => {
   res.render('excuses/create-excuse', { title: 'Add New Excuse' });
 });
 app.get('/excuses', excusesController.getAllExcuses);
+app.get('/api/excuses', excusesController.getAllExcusesJSON);
 
 // app.get('/excuses', async (req, res) => {
 //   try {

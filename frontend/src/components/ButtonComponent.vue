@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
     <button class="custom-button" @click="generateExcuse">Generate Excuse</button>
 </template>
   
@@ -10,8 +10,11 @@
       }
     }
   };
-</script>
-  
+</script> -->
+<template>
+    <button class="custom-button">Generate Excuse</button>
+</template>
+
 <style scoped>
     .custom-button {
     background-color: #4CAF50;
