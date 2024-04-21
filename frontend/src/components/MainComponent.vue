@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="main-component">
       <h1>Les Excuses de Dev</h1>
       <p>{{ currentExcuse }}</p>
       <ButtonComponent @generateExcuse="generateExcuse" />
@@ -32,5 +32,16 @@
         }
     },
   };
+
 </script>
+
+<style>
+  .main-component {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; 
+  }
+</style>
   
