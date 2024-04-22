@@ -5,3 +5,14 @@ This template should help get you started developing with Vue 3 in Vite. The tem
 ## Recommended IDE Setup
 
 - [VS Code](https://code.visualstudio.com/) + [Vue - Official](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (previously Volar) and disable Vetur
+
+Clonez le dépôt sur votre machine local: 
+git clone https://github.com/TimurkaNadezhda/excuses-de-dev.git
+
+Installez les dépendances:
+npm install
+
+Créez le fichier .env en utilisant .env.default comme modèle, et spécifiez les variables d'environnement requises
+
+Lancez le projet
+
