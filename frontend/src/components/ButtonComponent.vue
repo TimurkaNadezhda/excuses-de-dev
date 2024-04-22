@@ -1,16 +1,3 @@
-<!-- <template>
-    <button class="custom-button" @click="generateExcuse">Generate Excuse</button>
-</template>
-  
-<script>
-  export default {
-    methods: {
-      generateExcuse() {
-        this.$emit('generate-excuse');
-      }
-    }
-  };
-</script> -->
 <template>
     <button class="custom-button">Generate Excuse</button>
 </template>
