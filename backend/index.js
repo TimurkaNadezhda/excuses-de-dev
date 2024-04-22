@@ -24,9 +24,6 @@ app.use(
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-// app.get('/excuses', excusesController.getAllExcuses);
-app.get('/excuses/random', excusesController.getRandomExcuse);
-
 app.post('/excuses/add', validateExcuse, excusesController.addExcuse);
 
 app.get('/excuses/create', (req, res) => {
@@ -34,16 +31,8 @@ app.get('/excuses/create', (req, res) => {
 });
 app.get('/excuses', excusesController.getAllExcuses);
 app.get('/api/excuses', excusesController.getAllExcusesJSON);
+app.get('/api/excuses/:code', excusesController.getExcusesByCode);
 
-// app.get('/excuses', async (req, res) => {
-//   try {
-//       const excuses = await excusesController.getAllExcuses();
-//       res.render('excuses/list-excuses', { title: 'List of Excuses', excuses });
-//   } catch (error) {
-//       console.error('Failed to get excuses:', error);
-//       res.status(500).json({ error: 'Failed to get excuses' });
-//   }
-// });
 app.use((req, res, next) => {
   
   if (req.session.errors) {

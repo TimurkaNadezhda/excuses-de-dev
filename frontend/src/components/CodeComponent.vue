@@ -1,32 +1,43 @@
 <template>
-    <h1 v-if="currentExcuse">{{ currentExcuse.message }}</h1>
+    <main v-if="currentExcuse">
+        <!-- <h1 v-if="currentExcuse">{{ currentExcuse.http_code }}</h1> -->
+        <p>{{ currentExcuse.message }}</p>
+    </main>
 </template>
 
 <script setup>
     import { ref, onMounted } from 'vue';
-    import { useRoute } from 'vue-router'
+    import { useRoute, useRouter } from 'vue-router'
 
     const route = useRoute();
-    const excuses = ref([]);
+    const router = useRouter();
     const currentExcuse = ref(null);
 
-    const fetchExcuses = async () => {
-    try {
-        const response = await fetch(`${import.meta.env.VITE_API_URL}/excuses`);
-        excuses.value = await response.json();
+    const fetchExcuseByCode = async () => {
+        try {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/excuses/${route.params.http_code}`);
 
-        excuses.value.forEach(excuse => {
-            console.log(excuse);
-        });
-        console.log(route.params.http_code); 
-
-        currentExcuse.value = excuses.value.find((item) => item.http_code === route.params.http_code);
-    } catch (error) {
-        console.error('Failed to fetch excuses:', error);
-    }
+            if (response.status === 404) {
+                return router.push({ name: 'NotFound' });
+            }
+            
+            currentExcuse.value = await response.json();
+        } catch (error) {
+            console.error('Failed to fetch excuses:', error);
+        }
     };
 
     onMounted(async () => {
-    await fetchExcuses();
+        await fetchExcuseByCode();
     })
 </script>
+
+<style scoped>
+    main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    }
+</style>

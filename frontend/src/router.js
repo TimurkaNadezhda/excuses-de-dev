@@ -5,25 +5,26 @@ import CodeComponent from './components/CodeComponent.vue';
 import NotFoundComponent from './components/NotFoundComponent.vue';
 
 const routes = [
-  { 
-    path: '/',
-    name: 'Home',
-    component: MainComponent, 
-  },
-  {
-    path: '/lost',
-    name: 'Lost',
-    component: LostComponent,
-  },
-  {
-    path: '/:http_code',
-    name: 'Code',
-    component: CodeComponent,
-  },
-  {
-    path: '/:pathMatch(.*)*',
-    component: NotFoundComponent,
-  }
+    { 
+      path: '/',
+      name: 'Home',
+      component: MainComponent, 
+    },
+    {
+      path: '/lost',
+      name: 'Lost',
+      component: LostComponent,
+    },
+    {
+      path: '/404',
+      name: 'NotFound',
+      component: NotFoundComponent,
+    },
+    {
+      path: '/:http_code',
+      name: 'Code',
+      component: CodeComponent,
+    },
 ];
 
 const router = createRouter({
