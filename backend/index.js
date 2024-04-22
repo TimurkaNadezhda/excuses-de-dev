@@ -1,5 +1,6 @@
 const dotenv = require('dotenv');
 const express = require('express');
+const cors = require('cors')
 const mongoose = require('mongoose');
 const session =  require("express-session");
 const path = require('path');
@@ -9,6 +10,7 @@ const app = express();
 
 dotenv.config();
 app.use(express.json());
+app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 
 app.use(
@@ -22,25 +24,15 @@ app.use(
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-// app.get('/excuses', excusesController.getAllExcuses);
-app.get('/excuses/random', excusesController.getRandomExcuse);
-
 app.post('/excuses/add', validateExcuse, excusesController.addExcuse);
 
 app.get('/excuses/create', (req, res) => {
   res.render('excuses/create-excuse', { title: 'Add New Excuse' });
 });
 app.get('/excuses', excusesController.getAllExcuses);
+app.get('/api/excuses', excusesController.getAllExcusesJSON);
+app.get('/api/excuses/:code', excusesController.getExcusesByCode);
 
-// app.get('/excuses', async (req, res) => {
-//   try {
-//       const excuses = await excusesController.getAllExcuses();
-//       res.render('excuses/list-excuses', { title: 'List of Excuses', excuses });
-//   } catch (error) {
-//       console.error('Failed to get excuses:', error);
-//       res.status(500).json({ error: 'Failed to get excuses' });
-//   }
-// });
 app.use((req, res, next) => {
   
   if (req.session.errors) {

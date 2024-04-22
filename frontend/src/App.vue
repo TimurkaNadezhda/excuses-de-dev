@@ -1,20 +1,11 @@
 <template>
   <div id="app">
- 
-    <MainComponent />
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-
-import MainComponent from './components/MainComponent.vue';
-
-export default {
-  name: 'App',
-  components: {
-    MainComponent 
-  }
-}
+  export default {
+    name: 'App',
+  };
 </script>
-
-

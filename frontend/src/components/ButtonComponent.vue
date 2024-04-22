@@ -1,17 +1,7 @@
 <template>
-    <button class="custom-button" @click="generateExcuse">Generate Excuse</button>
+    <button class="custom-button">Generate Excuse</button>
 </template>
-  
-<script>
-  export default {
-    methods: {
-      generateExcuse() {
-        this.$emit('generate-excuse');
-      }
-    }
-  };
-</script>
-  
+
 <style scoped>
     .custom-button {
     background-color: #4CAF50;

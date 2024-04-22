@@ -1,36 +1,45 @@
 <template>
-    <div>
+    <div class="main-component">
       <h1>Les Excuses de Dev</h1>
-      <p>{{ currentExcuse }}</p>
-      <ButtonComponent @generateExcuse="generateExcuse" />
+      <p v-if="currentExcuse">{{ currentExcuse.message }}</p>
+      <ButtonComponent @click="generateExcuse" />     
     </div>
-</template>
+</template> 
   
-<script>
+<script setup>
+  import { ref, onMounted } from 'vue';
   import ButtonComponent from './ButtonComponent.vue';
-  
-  export default {
-    components: {
-      ButtonComponent,
-    },
-    data() {
-      return {
-        currentExcuse: '',
-      };
-    },
-    methods: {
-        generateExcuse() {
-            fetch('/excuses/random') 
-                .then(response => response.json())
-                .then(data => {
-                
-                this.currentExcuse = data.message;
-                })
-                .catch(error => {
-                console.error('Failed to fetch excuse:', error);
-                });
-        }
-    },
+
+  const excuses = ref([]);
+  const currentExcuse = ref(null);
+
+  const fetchExcuses = async () => {
+    try {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/excuses`);
+      excuses.value = await response.json();
+    } catch (error) {
+      console.error('Failed to fetch excuses:', error);
+    }
   };
-</script>
-  
+
+  const generateExcuse = () => {
+    const index = Math.floor(Math.random() * excuses.value.length);
+
+    currentExcuse.value = excuses.value[index];
+    excuses.value.splice(index, 1);
+  };
+
+  onMounted(async () => {
+    await fetchExcuses();
+  })
+</script>  
+
+<style>
+  .main-component {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; 
+  }
+</style>
